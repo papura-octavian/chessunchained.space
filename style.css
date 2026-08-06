@@ -1,0 +1,261 @@
+/*
+    Chess: Unchained - site de prezentare.
+
+    Fara framework si fara pas de build: o pagina care se schimba de cateva ori pe an nu are
+    ce face cu o unealta de compilare, iar peste sase luni aia ar fi o dependinta stricata in
+    loc de o pagina.
+
+    Culorile sunt cele din joc (UiTheme.cs), ca site-ul si jocul sa arate ca acelasi lucru.
+*/
+
+/* Fontul e cel din joc, servit LOCAL. Un font de pe un CDN se strica in ziua in care se
+   strica CDN-ul, si scurge vizitatorii spre altcineva. Se foloseste doar la titluri: la
+   marimea textului de rand, un font de pixeli se citeste greu. */
+@font-face {
+    font-family: "MenuCard";
+    src: url("fonts/MenuCard.ttf") format("truetype");
+    font-display: swap;
+}
+
+:root {
+    --bg: #0d151c;
+    --surface: #14212b;
+    --surface-high: #1d2e3e;
+    --border: #284157;
+    --border-soft: #1e3040;
+    --text: #ece8d8;
+    --muted: #8896a3;
+    --faint: #56656f;
+    --accent: #d99c41;
+    --accent-deep: #6b4c20;
+    --danger: #c4553a;
+
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --display: "MenuCard", var(--body);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0 20px 80px;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 var(--body);
+
+    /* Pagina e intunecata prin decizie, nu prin tema browserului: e un site de joc, si asa
+       arata si jocul. De asta nu exista varianta luminoasa. */
+    color-scheme: dark;
+}
+
+h1, h2, h3 { font-family: var(--display); font-weight: normal; letter-spacing: .5px; }
+a { color: var(--accent); }
+
+/* ------------------------------------------------------------------ limba */
+
+.lang {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    max-width: 1000px;
+    margin: 16px auto 0;
+}
+
+.lang button {
+    background: transparent;
+    border: 1px solid var(--border-soft);
+    color: var(--faint);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font: 13px var(--body);
+    cursor: pointer;
+}
+
+.lang button:hover { color: var(--text); border-color: var(--border); }
+.lang button.on { color: var(--accent); border-color: var(--accent-deep); background: rgba(217, 156, 65, .08); }
+
+/* ------------------------------------------------------------------ cap de pagina */
+
+.hero {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 0 8px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 8vw, 72px);
+    color: var(--accent);
+    margin: 8px 0 4px;
+}
+
+.tagline {
+    color: var(--muted);
+    font-size: clamp(15px, 2.6vw, 20px);
+    margin: 0 auto 28px;
+    max-width: 34em;
+}
+
+.trailer { margin: 0 0 28px; }
+
+.trailer img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+}
+
+.trailer figcaption {
+    color: var(--faint);
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* ------------------------------------------------------------------ descarcare */
+
+.download {
+    display: inline-block;
+    background: var(--accent);
+    color: #17110a;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 16px 40px;
+    font-family: var(--display);
+    font-size: 24px;
+    line-height: 1.2;
+    transition: transform .12s ease, box-shadow .12s ease;
+    box-shadow: 0 6px 0 var(--accent-deep);
+}
+
+.download:hover { transform: translateY(-2px); box-shadow: 0 8px 0 var(--accent-deep); }
+.download:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--accent-deep); }
+
+.download small {
+    display: block;
+    font-family: var(--body);
+    font-size: 13px;
+    opacity: .75;
+    margin-top: 5px;
+}
+
+.counter { color: var(--faint); font-size: 13px; margin: 12px 0 0; }
+
+/* ------------------------------------------------------------------ avertismentul Windows */
+
+.warning {
+    max-width: 640px;
+    margin: 28px auto 0;
+    padding: 16px 20px;
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--danger);
+    border-radius: 8px;
+}
+
+.warning strong { display: block; margin-bottom: 6px; }
+.warning p { margin: 0; color: var(--muted); font-size: 14px; }
+
+/* ------------------------------------------------------------------ continut */
+
+main { max-width: 1000px; margin: 0 auto; }
+
+section { margin-top: 72px; }
+
+section h2 {
+    font-size: clamp(24px, 4vw, 34px);
+    margin: 0 0 12px;
+}
+
+.about p, .lede {
+    color: var(--muted);
+    max-width: 58em;
+    margin: 0 0 8px;
+}
+
+/* ------------------------------------------------------------------ piesele */
+
+.slot { margin-top: 36px; }
+
+.slot h3 {
+    font-size: 20px;
+    color: var(--accent);
+    margin: 0 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.variants {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+}
+
+.variant {
+    display: flex;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    padding: 14px;
+}
+
+.variant img {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
+    object-fit: contain;
+    image-rendering: auto;
+}
+
+/* Cand un desen lipseste, ramane un loc gol curat - nu iconita de imagine stricata. */
+.variant img.missing { visibility: hidden; }
+
+.variant h4 { margin: 0 0 6px; font: 17px var(--display); color: var(--text); }
+.variant dl { margin: 0; font-size: 13.5px; }
+.variant dt { color: var(--faint); text-transform: uppercase; font-size: 11px; letter-spacing: .6px; margin-top: 6px; }
+.variant dd { margin: 1px 0 0; color: var(--muted); }
+.variant dd.effect { color: var(--text); }
+
+.error { color: var(--danger); }
+
+/* ------------------------------------------------------------------ sustinere */
+
+.support { text-align: center; }
+.support p { color: var(--muted); max-width: 40em; margin: 0 auto 20px; }
+
+.heart {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-size: 17px;
+}
+
+.heart:hover { border-color: var(--danger); color: #fff; background: rgba(196, 85, 58, .12); }
+
+/* ------------------------------------------------------------------ subsol */
+
+footer {
+    max-width: 1000px;
+    margin: 80px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-soft);
+    color: var(--faint);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* ------------------------------------------------------------------ telefon */
+
+/* Jumatate din oamenii care vin de pe TikTok sunt pe telefon. Nu pot descarca jocul, dar
+   acolo decid daca merita sa se intoarca de pe calculator. */
+@media (max-width: 600px) {
+    body { padding: 0 14px 60px; }
+    .download { padding: 14px 26px; font-size: 20px; width: 100%; }
+    .variants { grid-template-columns: 1fr; }
+    section { margin-top: 52px; }
+}

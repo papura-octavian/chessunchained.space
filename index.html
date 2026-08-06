@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chess: Unchained — chess where your pieces earn powers</title>
+<meta name="description" content="Chess, but your pieces earn powers while you play. Free demo for Windows. Built solo, in the open.">
+
+<meta property="og:title" content="Chess: Unchained">
+<meta property="og:description" content="Chess, but your pieces earn powers while you play. Free demo for Windows.">
+<meta property="og:image" content="shots/menu.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="pieces/white_knight_fieryhorse.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Comutatorul de limba sta sus, in afara continutului: e o setare, nu o parte din pagina. -->
+<div class="lang" role="group" aria-label="Language">
+  <button type="button" data-lang="en" class="on">EN</button>
+  <button type="button" data-lang="ro">RO</button>
+</div>
+
+<header class="hero">
+  <h1>Chess: Unchained</h1>
+  <p class="tagline" data-t="tagline"></p>
+
+  <!-- Locul trailerului. Pana vine, sta o poza din joc; atunci se inlocuieste doar figura. -->
+  <figure class="trailer">
+    <img src="shots/menu.png" alt="Chess: Unchained" width="1600" height="900">
+    <figcaption data-t="trailerSoon"></figcaption>
+  </figure>
+
+  <a class="download" href="https://github.com/papura-octavian/chessunchained.space/releases/latest/download/ChessUnchained-demo-win64.zip">
+    <span data-t="download"></span>
+    <small data-t="downloadNote"></small>
+  </a>
+
+  <p class="counter" id="counter" hidden></p>
+
+  <!--
+    Avertismentul sta INAINTE de descarcare, nu dupa.
+    Altfel primul lucru care i se intampla omului dupa ce a avut incredere in tine
+    e o alerta de securitate pe care nu i-a explicat-o nimeni.
+  -->
+  <aside class="warning">
+    <strong data-t="warnTitle"></strong>
+    <p data-t="warnBody"></p>
+  </aside>
+</header>
+
+<main>
+  <section class="about">
+    <h2 data-t="aboutTitle"></h2>
+    <p data-t="aboutBody"></p>
+  </section>
+
+  <section class="pieces">
+    <h2 data-t="piecesTitle"></h2>
+    <p class="lede" data-t="piecesIntro"></p>
+
+    <!-- Se umple din variants.json. Niciun text de aici nu e scris de mana. -->
+    <div id="catalog"></div>
+    <p id="catalogError" class="error" hidden data-t="catalogError"></p>
+  </section>
+
+  <section class="support">
+    <h2 data-t="supportTitle"></h2>
+    <p data-t="supportBody"></p>
+    <a class="heart" href="https://paypal.me/Cornel99516" rel="noopener">&#10084;&#65039; Support</a>
+  </section>
+</main>
+
+<footer>
+  <p><span data-t="footerMade"></span> &middot; <span id="version"></span></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

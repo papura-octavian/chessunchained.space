@@ -1,0 +1,246 @@
+/*
+    Chess: Unchained - logica paginii.
+
+    Trei lucruri: schimbat limba, umplut catalogul din variants.json, si adus numarul de
+    descarcari de la GitHub. Nimic altceva - fara framework si fara pas de build.
+*/
+
+// Repo-ul PUBLIC, cel cu site-ul si release-urile. Nu cel privat cu codul.
+var REPO = "papura-octavian/chessunchained.space";
+
+/*
+    Textele paginii. Doar cele de prezentare: numele, conditiile si efectele celor 22 de
+    variante vin din variants.json, deja bilingv, ca sa nu existe doua liste care sa se poata
+    contrazice. O abilitate modificata in joc schimba si pagina, la urmatoarea publicare.
+*/
+var TEXTS = {
+    en: {
+        tagline: "Chess, but your pieces earn powers while you play.",
+        trailerSoon: "Trailer coming soon.",
+        download: "Download the free demo",
+        downloadNote: "Windows · 79 MB · vs the bot or 1v1 on the same computer",
+        downloads: "{n} downloads so far",
+
+        warnTitle: "Windows will warn you. Here is why.",
+        warnBody: "The game is not digitally signed, so Windows will say “unknown publisher”. " +
+                  "A signing certificate costs more per year than I have to spend on this right now. " +
+                  "Click “More info”, then “Run anyway”. That is all it is.",
+
+        aboutTitle: "What this is",
+        aboutBody: "Normal chess underneath: same board, same rules, same pieces. But before a match you pick " +
+                   "6 upgrade cards, and during the match your pieces unlock them by actually doing things — " +
+                   "a knight that survives three moves catches fire, a rook that holds still puts up a wall. " +
+                   "The demo has all of it except online play. It is not finished, and I am building it on my own.",
+
+        piecesTitle: "The pieces",
+        piecesIntro: "Six slots, one card each. Here is everything you can pick and what it takes to unlock.",
+        catalogError: "Could not load the piece list.",
+        condition: "How to unlock",
+        effect: "What it does",
+
+        supportTitle: "Help it get finished",
+        supportBody: "No studio, no funding, no team. Just me and a lot of evenings. If you want this game to " +
+                     "exist, this is the most direct way to help.",
+
+        footerMade: "Made by one person"
+    },
+
+    ro: {
+        tagline: "Sah, dar piesele isi castiga puteri in timpul partidei.",
+        trailerSoon: "Trailerul vine in curand.",
+        download: "Descarca demo-ul gratuit",
+        downloadNote: "Windows · 79 MB · contra botului sau 1v1 pe acelasi calculator",
+        downloads: "{n} descarcari pana acum",
+
+        warnTitle: "Windows o sa te avertizeze. Uite de ce.",
+        warnBody: "Jocul nu e semnat digital, deci Windows va spune „unknown publisher”. " +
+                  "Un certificat de semnare costa pe an mai mult decat imi permit acum. " +
+                  "Apesi „More info”, apoi „Run anyway”. Asta e tot.",
+
+        aboutTitle: "Ce e asta",
+        aboutBody: "Pe dedesubt e sah normal: aceeasi tabla, aceleasi reguli, aceleasi piese. Dar inainte de " +
+                   "meci iti alegi 6 carti de upgrade, iar in timpul partidei piesele si le deblocheaza facand " +
+                   "lucruri pe tabla — un cal care rezista trei mutari ia foc, un turn care sta pe loc ridica " +
+                   "un zid. Demo-ul le are pe toate, mai putin partea online. Nu e gata, si il fac singur.",
+
+        piecesTitle: "Piesele",
+        piecesIntro: "Sase sloturi, cate o carte in fiecare. Astea sunt toate, si ce trebuie facut ca sa se deblocheze.",
+        catalogError: "Nu am putut incarca lista de piese.",
+        condition: "Cum se deblocheaza",
+        effect: "Ce face",
+
+        supportTitle: "Ajuta-l sa fie terminat",
+        supportBody: "Fara studio, fara finantare, fara echipa. Doar eu si multe seri. Daca vrei ca jocul asta " +
+                     "sa existe, asta e cel mai direct mod de a ajuta.",
+
+        footerMade: "Facut de un singur om"
+    }
+};
+
+var catalog = null;      // variants.json, odata incarcat
+var lang = "en";
+
+// ---------------------------------------------------------------- limba
+
+function pickLanguage(next) {
+    lang = TEXTS[next] ? next : "en";
+    document.documentElement.lang = lang;
+
+    var words = TEXTS[lang];
+    var nodes = document.querySelectorAll("[data-t]");
+    for (var i = 0; i < nodes.length; i++) {
+        var key = nodes[i].getAttribute("data-t");
+        if (words[key]) nodes[i].textContent = words[key];
+    }
+
+    var buttons = document.querySelectorAll(".lang button");
+    for (var j = 0; j < buttons.length; j++) {
+        buttons[j].classList.toggle("on", buttons[j].getAttribute("data-lang") === lang);
+    }
+
+    // Catalogul se redeseneaza, nu se reincarca: datele sunt deja bilingve in memorie.
+    if (catalog) drawCatalog();
+
+    try { localStorage.setItem("lang", lang); } catch (e) { /* navigare privata */ }
+}
+
+// ---------------------------------------------------------------- catalogul
+
+function drawCatalog() {
+    var words = TEXTS[lang];
+    var host = document.getElementById("catalog");
+    host.innerHTML = "";
+
+    for (var s = 0; s < catalog.slots.length; s++) {
+        var slot = catalog.slots[s];
+
+        var section = document.createElement("div");
+        section.className = "slot";
+
+        var title = document.createElement("h3");
+        title.textContent = slot.name[lang] || slot.name.en;
+        section.appendChild(title);
+
+        var grid = document.createElement("div");
+        grid.className = "variants";
+
+        for (var v = 0; v < slot.variants.length; v++) {
+            grid.appendChild(variantCard(slot.variants[v], words));
+        }
+
+        section.appendChild(grid);
+        host.appendChild(section);
+    }
+}
+
+function variantCard(variant, words) {
+    var card = document.createElement("div");
+    card.className = "variant";
+
+    var image = document.createElement("img");
+    image.src = variant.image || "";
+    image.alt = "";
+    image.loading = "lazy";
+
+    // Un desen lipsa lasa un loc gol curat, nu iconita de imagine stricata a browserului.
+    if (!variant.image) image.className = "missing";
+    image.onerror = function () { this.className = "missing"; };
+    card.appendChild(image);
+
+    var body = document.createElement("div");
+
+    var name = document.createElement("h4");
+    name.textContent = variant.name[lang] || variant.name.en;
+    body.appendChild(name);
+
+    var list = document.createElement("dl");
+    list.appendChild(term(words.condition));
+    list.appendChild(definition(variant.condition[lang] || variant.condition.en, ""));
+    list.appendChild(term(words.effect));
+    list.appendChild(definition(variant.effect[lang] || variant.effect.en, "effect"));
+    body.appendChild(list);
+
+    card.appendChild(body);
+    return card;
+}
+
+function term(text) {
+    var dt = document.createElement("dt");
+    dt.textContent = text;
+    return dt;
+}
+
+function definition(text, className) {
+    var dd = document.createElement("dd");
+    dd.textContent = text;
+    if (className) dd.className = className;
+    return dd;
+}
+
+function loadCatalog() {
+    fetch("variants.json")
+        .then(function (response) {
+            if (!response.ok) throw new Error(response.status);
+            return response.json();
+        })
+        .then(function (data) {
+            catalog = data;
+            drawCatalog();
+            if (data.version) document.getElementById("version").textContent = data.version;
+        })
+        .catch(function () {
+            document.getElementById("catalogError").hidden = false;
+        });
+}
+
+// ---------------------------------------------------------------- descarcari
+
+/*
+    Numarul de descarcari, din API-ul public GitHub. Fara autentificare, fara cookie-uri,
+    fara banner de consimtamant - si asta e TOATA analitica de pe site.
+
+    Daca cererea esueaza (limita de rata, retea), cifra pur si simplu nu se arata. Nu se pune
+    o eroare pe ecran pentru un numar decorativ.
+*/
+function loadDownloads() {
+    fetch("https://api.github.com/repos/" + REPO + "/releases/latest")
+        .then(function (response) {
+            if (!response.ok) throw new Error(response.status);
+            return response.json();
+        })
+        .then(function (release) {
+            var total = 0;
+            for (var i = 0; i < (release.assets || []).length; i++) {
+                total += release.assets[i].download_count || 0;
+            }
+            if (total <= 0) return;
+
+            var node = document.getElementById("counter");
+            node.textContent = TEXTS[lang].downloads.replace("{n}", total);
+            node.hidden = false;
+        })
+        .catch(function () { /* tacut, dinadins */ });
+}
+
+// ---------------------------------------------------------------- pornire
+
+(function start() {
+    var saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) { /* navigare privata */ }
+
+    // Fara alegere salvata, se incearca limba browserului: un roman nimereste romana din prima.
+    if (!saved) {
+        saved = (navigator.language || "en").toLowerCase().indexOf("ro") === 0 ? "ro" : "en";
+    }
+
+    var buttons = document.querySelectorAll(".lang button");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function () {
+            pickLanguage(this.getAttribute("data-lang"));
+        });
+    }
+
+    pickLanguage(saved);
+    loadCatalog();
+    loadDownloads();
+})();

@@ -1,0 +1,412 @@
+{
+  "generatedAtUtc": "2026-08-06T02:05:15Z",
+  "version": "v0.1",
+  "slots": [
+    {
+      "slot": "pawns",
+      "name": {
+        "en": "Pawns",
+        "ro": "Pioni"
+      },
+      "variants": [
+        {
+          "key": "kingsguard",
+          "name": {
+            "en": "King\u0027s Guard",
+            "ro": "Garda Regelui"
+          },
+          "condition": {
+            "en": "The pawn in front of the king captures any enemy piece.",
+            "ro": "Pionul din fata regelui captureaza orice piesa inamica."
+          },
+          "effect": {
+            "en": "Becomes a MightyPawn: captures sideways, gives check sideways, never promotes. On the last rank it unlocks full mobility.",
+            "ro": "Devine MightyPawn: captureaza lateral, da sah lateral, nu promoveaza niciodata. Pe ultima linie capata mobilitate completa."
+          },
+          "image": "pieces/white_pawn_kingsguard.png"
+        },
+        {
+          "key": "miners",
+          "name": {
+            "en": "Miners",
+            "ro": "Minerii"
+          },
+          "condition": {
+            "en": "The pawns on the a, c, f and h files are blocked in front for 2 consecutive turns.",
+            "ro": "Pionii de pe coloanele a, c, f si h sunt blocati frontal 2 ture consecutive."
+          },
+          "effect": {
+            "en": "They can make a single one-square sideways step.",
+            "ro": "Pot face o singura data un pas lateral de un patrat."
+          },
+          "image": "pieces/white_pawn_miners.png"
+        },
+        {
+          "key": "brokenline",
+          "name": {
+            "en": "Broken Line",
+            "ro": "Linia Franta"
+          },
+          "condition": {
+            "en": "No condition, but you start with 7 pawns: the missing one is chosen at random.",
+            "ro": "Fara conditie, dar incepi cu 7 pioni: cel lipsa e ales aleator."
+          },
+          "effect": {
+            "en": "In exchange, every pawn can advance 2 squares at any time, not only from the start rank.",
+            "ro": "In schimb, toti pionii pot avansa 2 patrate oricand, nu doar de pe randul de start."
+          },
+          "image": "pieces/white_pawn_brokenline.png"
+        },
+        {
+          "key": "fanatics",
+          "name": {
+            "en": "Fanatics",
+            "ro": "Fanaticii"
+          },
+          "condition": {
+            "en": "A pawn reaches rank 6.",
+            "ro": "Un pion ajunge pe linia 6."
+          },
+          "effect": {
+            "en": "It may promote there, but only to a knight or bishop. Promotion is optional: it can continue to rank 8 for a queen.",
+            "ro": "Poate promova acolo, dar doar in cal sau nebun. Promovarea e optionala: poate continua spre linia 8 pentru dama."
+          },
+          "image": "pieces/white_pawn_fanatics.png"
+        },
+        {
+          "key": "deserters",
+          "name": {
+            "en": "The Deserters",
+            "ro": "Dezertorii"
+          },
+          "condition": {
+            "en": "None. Every pawn starts with its retreat available.",
+            "ro": "Niciuna. Fiecare pion se naste cu retragerea disponibila."
+          },
+          "effect": {
+            "en": "Each pawn can step back one square, once per game. The retreat cannot capture.",
+            "ro": "Fiecare pion poate merge inapoi un patrat, o singura data in partida. Retragerea nu captureaza."
+          },
+          "image": "pieces/white_pawn_deserters.png"
+        },
+        {
+          "key": "mercenaries",
+          "name": {
+            "en": "The Mercenaries",
+            "ro": "Mercenarii"
+          },
+          "condition": {
+            "en": "A pawn captures something that is not a pawn.",
+            "ro": "Un pion captureaza o piesa care nu e pion."
+          },
+          "effect": {
+            "en": "It borrows the captured piece\u0027s shape until its next move. Moving that way tires it for one turn and it becomes a pawn again - but it can borrow another shape later.",
+            "ro": "Imprumuta forma piesei luate pana la urmatoarea lui mutare. Daca se misca asa, oboseste o tura si redevine pion - dar poate lua alta forma mai tarziu."
+          },
+          "image": "pieces/white_pawn_mercenaries.png"
+        }
+      ]
+    },
+    {
+      "slot": "knight",
+      "name": {
+        "en": "Knight",
+        "ro": "Cal"
+      },
+      "variants": [
+        {
+          "key": "fieryhorse",
+          "name": {
+            "en": "Fiery Horse",
+            "ro": "Fiery Horse"
+          },
+          "condition": {
+            "en": "The same knight moves on 3 consecutive own turns, without returning to a square it already visited.",
+            "ro": "Acelasi cal se muta 3 ture proprii consecutive, fara sa revina pe un patrat deja vizitat."
+          },
+          "effect": {
+            "en": "Catches fire for one round: its next move burns 3 squares along the path, allies included. The fire threat counts as check.",
+            "ro": "Ia foc o runda: urmatoarea mutare arde 3 patrate de pe traseu, aliati inclusi. Amenintarea de foc conteaza ca sah."
+          },
+          "image": "pieces/white_knight_fieryhorse.png"
+        },
+        {
+          "key": "nightmare",
+          "name": {
+            "en": "Nightmare",
+            "ro": "Cosmarul"
+          },
+          "condition": {
+            "en": "The same knight captures 2 pieces without being captured.",
+            "ro": "Acelasi cal captureaza 2 piese fara sa fie capturat."
+          },
+          "effect": {
+            "en": "Once every 3 turns it can make a \u0022long L\u0022 (3\u002B1), in addition to its normal moves.",
+            "ro": "O data la 3 ture poate face un \u0022L lung\u0022 (3\u002B1), pe langa mutarile normale."
+          },
+          "image": "pieces/white_knight_nightmare.png"
+        },
+        {
+          "key": "doublerider",
+          "name": {
+            "en": "The Double Rider",
+            "ro": "Cavalerul Dublu"
+          },
+          "condition": {
+            "en": "The same knight captures 3 pieces.",
+            "ro": "Acelasi cal captureaza 3 piese."
+          },
+          "effect": {
+            "en": "Once per game, two knight jumps in a single turn. The first must land on an empty square; the second may capture.",
+            "ro": "O singura data, doua sarituri de cal intr-o tura. Prima trebuie sa aterizeze pe gol; a doua poate captura."
+          },
+          "image": "pieces/white_knight_doublerider.png"
+        }
+      ]
+    },
+    {
+      "slot": "bishop",
+      "name": {
+        "en": "Bishop",
+        "ro": "Nebun"
+      },
+      "variants": [
+        {
+          "key": "archbishop",
+          "name": {
+            "en": "Archbishop",
+            "ro": "Archbishop"
+          },
+          "condition": {
+            "en": "The same bishop captures two medium pieces (knight, bishop, rook) or one queen. Only one bishop can become an Archbishop.",
+            "ro": "Acelasi nebun captureaza doua piese medii (cal, nebun, turn) sau o dama. Doar un singur nebun poate deveni Archbishop."
+          },
+          "effect": {
+            "en": "Permanent: moves diagonally like a bishop, plus the knight\u0027s L move.",
+            "ro": "Permanent: se misca pe diagonale ca un nebun, plus mutare in L ca un cal."
+          },
+          "image": "pieces/white_bishop_archbishop.png"
+        },
+        {
+          "key": "convert",
+          "name": {
+            "en": "The Convert",
+            "ro": "Convertitorul"
+          },
+          "condition": {
+            "en": "Once every 3 of your own turns. The recharge starts counting from move one.",
+            "ro": "O data la 3 ture proprii. Reincarcarea porneste de la inceputul partidei."
+          },
+          "effect": {
+            "en": "The bishop steps one square sideways, left or right, onto an empty square. That is how it changes the colour it travels on.",
+            "ro": "Nebunul face un pas lateral, stanga sau dreapta, pe un patrat gol. Asa isi schimba culoarea patratelor pe care se misca."
+          },
+          "image": "pieces/white_bishop_convert.png"
+        },
+        {
+          "key": "zealot",
+          "name": {
+            "en": "The Zealot",
+            "ro": "Zelotul"
+          },
+          "condition": {
+            "en": "The bishop captures a piece worth more than itself: a rook or a queen.",
+            "ro": "Nebunul captureaza o piesa mai valoroasa decat el: un turn sau o dama."
+          },
+          "effect": {
+            "en": "A chain of captures along the same diagonal, in the same direction, however long. It stops at a friendly piece or a king.",
+            "ro": "Lant de capturi pe aceeasi diagonala, in acelasi sens, oricat de lung. Se opreste la o piesa proprie sau la un rege."
+          },
+          "image": "pieces/white_bishop_zealot.png"
+        }
+      ]
+    },
+    {
+      "slot": "rook",
+      "name": {
+        "en": "Rook",
+        "ro": "Turn"
+      },
+      "variants": [
+        {
+          "key": "rocksolid",
+          "name": {
+            "en": "Rock Solid",
+            "ro": "Rock Solid"
+          },
+          "condition": {
+            "en": "The rook captures a piece, then stays still for 3 consecutive own turns.",
+            "ro": "Turnul captureaza o piesa, apoi sta nemiscat 3 ture proprii consecutive."
+          },
+          "effect": {
+            "en": "Gains a shield: the first attack takes the shield instead of killing it, and the attacker stays put. Repeatable.",
+            "ro": "Primeste un scut: primul atac ii ia scutul in loc sa il omoare, iar atacatorul ramane pe loc. Se poate reface."
+          },
+          "image": "pieces/white_rook_rocksolid.png"
+        },
+        {
+          "key": "wall",
+          "name": {
+            "en": "Wall",
+            "ro": "Wall"
+          },
+          "condition": {
+            "en": "The rook makes at least one move, then stays still for 3 consecutive own turns.",
+            "ro": "Turnul face cel putin o mutare, apoi sta nemiscat 3 ture proprii consecutive."
+          },
+          "effect": {
+            "en": "Raises a wall over up to 3 horizontal squares. It blocks any line, even a check. While it is up, the rook cannot move.",
+            "ro": "Ridica un zid pe pana la 3 patrate orizontale. Blocheaza orice linie, chiar si un sah. Cat e activ, turnul nu se poate misca."
+          },
+          "image": "pieces/white_rook.png"
+        },
+        {
+          "key": "perfectcounter",
+          "name": {
+            "en": "Perfect Counter",
+            "ro": "Perfect Counter"
+          },
+          "condition": {
+            "en": "Once every 7 of your own turns.",
+            "ro": "O data la 7 ture proprii."
+          },
+          "effect": {
+            "en": "The rook raises its shield instead of moving. Whoever tries to take it dies instead. Lasts one round.",
+            "ro": "Turnul isi ridica scutul si nu se misca. Cine incearca sa il ia moare in locul lui. Tine o runda."
+          },
+          "image": "pieces/white_rook.png"
+        }
+      ]
+    },
+    {
+      "slot": "queen",
+      "name": {
+        "en": "Queen",
+        "ro": "Dama"
+      },
+      "variants": [
+        {
+          "key": "heavycrown",
+          "name": {
+            "en": "Heavy Crown",
+            "ro": "Coroana Grea"
+          },
+          "condition": {
+            "en": "Available from the start, once per game.",
+            "ro": "Disponibila de la inceput, o singura data pe joc."
+          },
+          "effect": {
+            "en": "The queen returns instantly to her start square, if it is free. An escape, not a power.",
+            "ro": "Dama se intoarce instant pe patratul ei de start, daca e liber. Mecanica de salvare, nu de putere."
+          },
+          "image": "pieces/white_queen_heavycrown.png"
+        },
+        {
+          "key": "shadowqueen",
+          "name": {
+            "en": "Shadow Queen",
+            "ro": "Regina Umbra"
+          },
+          "condition": {
+            "en": "The queen captures 3 pieces.",
+            "ro": "Dama captureaza 3 piese."
+          },
+          "effect": {
+            "en": "Once, she can jump over exactly one piece blocking her.",
+            "ro": "O singura data, poate sari peste exact o piesa care o blocheaza."
+          },
+          "image": "pieces/white_queen_shadowqueen.png"
+        },
+        {
+          "key": "motherqueen",
+          "name": {
+            "en": "Mother Queen",
+            "ro": "Regina Mama"
+          },
+          "condition": {
+            "en": "No condition: the counter runs from the start of the game.",
+            "ro": "Nu are conditie: contorul curge de la inceputul partidei."
+          },
+          "effect": {
+            "en": "Every 10 own turns a new pawn appears in front of her. If the square is taken, the spawn is missed and the counter restarts.",
+            "ro": "La fiecare 10 ture proprii apare un pion nou in fata ei. Daca patratul e ocupat, spawn-ul se rateaza si contorul reporneste."
+          },
+          "image": "pieces/white_queen_motherqueen.png"
+        },
+        {
+          "key": "widow",
+          "name": {
+            "en": "The Widow",
+            "ro": "Regina Vaduva"
+          },
+          "condition": {
+            "en": "None. It switches on by itself while your king is in check.",
+            "ro": "Niciuna. Se aprinde singura cat timp regele tau e in sah."
+          },
+          "effect": {
+            "en": "While the king is in check, the queen also moves like a knight. It goes out the moment the check is answered.",
+            "ro": "Cat regele e in sah, dama se misca si ca un cal. Se stinge in clipa in care sahul e parat."
+          },
+          "image": "pieces/white_queen_widow.png"
+        }
+      ]
+    },
+    {
+      "slot": "king",
+      "name": {
+        "en": "King",
+        "ro": "Rege"
+      },
+      "variants": [
+        {
+          "key": "warriorking",
+          "name": {
+            "en": "Warrior King",
+            "ro": "Regele Razboinic"
+          },
+          "condition": {
+            "en": "The king captures a piece in person.",
+            "ro": "Regele captureaza personal o piesa."
+          },
+          "effect": {
+            "en": "Once per game, it can move 2 squares in a straight line, without passing through check. It CANNOT castle.",
+            "ro": "O data pe joc, se poate misca 2 patrate in linie dreapta, fara sa treaca prin sah. NU poate face rocada."
+          },
+          "image": "pieces/white_king_warriorking.png"
+        },
+        {
+          "key": "exile",
+          "name": {
+            "en": "The Exile",
+            "ro": "Exilatul"
+          },
+          "condition": {
+            "en": "Has already castled once.",
+            "ro": "A facut deja o rocada."
+          },
+          "effect": {
+            "en": "The only king that can castle. It can also castle a second time, on the opposite side, if that rook has not moved and the path is clear.",
+            "ro": "Singurul rege care poate face rocada. Poate face si a doua rocada, pe partea opusa, daca turnul de acolo nu s-a miscat si drumul e liber."
+          },
+          "image": "pieces/white_king_exile.png"
+        },
+        {
+          "key": "shadowking",
+          "name": {
+            "en": "The Shadow King",
+            "ro": "Regele Umbra"
+          },
+          "condition": {
+            "en": "Once every 10 of your own turns. It recharges.",
+            "ro": "O data la 10 ture proprii. Se reincarca."
+          },
+          "effect": {
+            "en": "Swaps places with any friendly piece on the board, however far away.",
+            "ro": "Schimb de locuri cu orice piesa aliata de pe tabla, oricat de departe."
+          },
+          "image": "pieces/white_king_shadowking.png"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Nimic generat nu se comite.
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# Specificatia dupa care s-a construit site-ul. Ramane local: sunt note de lucru, nu au ce
+# cauta intr-un repo public.
+Prompt.txt
