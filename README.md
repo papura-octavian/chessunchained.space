@@ -13,7 +13,7 @@ puterile in timpul partidei.
 | `index.html`, `style.css`, `script.js` | pagina. HTML+CSS+JS simplu, fara framework si fara pas de build |
 | `variants.json`, `pieces/` | catalogul celor 22 de variante, bilingv. **Generat din joc** |
 | `shots/` | poze din joc, generate |
-| `CNAME` | domeniul. **Scos momentan** — vezi mai jos |
+| `CNAME` | domeniul |
 
 **Codul jocului nu e aici.** Sta intr-un repo privat separat. Aici ajunge doar pagina si, ca
 Release, arhiva cu jocul compilat.
@@ -39,28 +39,11 @@ trei versiuni de demo ar insemna sute de megaocteti pe care oricine cloneaza ii 
 degeaba. Release-urile stau in afara istoricului si accepta 2 GB per fisier.
 
 
-## Domeniul propriu
+## Domeniul
 
-Site-ul e live acum la <https://papura-octavian.github.io/chessunchained.space/>.
+`chessunchained.space`, cumparat la Namecheap si legat prin patru inregistrari A spre
+serverele GitHub Pages (185.199.108-111.153). Fisierul `CNAME` din repo ii spune lui GitHub
+pentru ce domeniu sa raspunda — daca dispare, site-ul se intoarce pe adresa github.io.
 
-Fisierul `CNAME` e scos deliberat (redenumit `CNAME.gata-de-pus`): cat timp `chessunchained.space`
-nu are DNS, prezenta lui face GitHub sa redirectioneze spre un domeniu mort, adica site-ul nu
-mai e accesibil nimanui.
-
-Ca sa treci pe domeniul propriu, dupa ce il cumperi, in Namecheap → Advanced DNS:
-
-| Tip | Host | Valoare |
-| --- | --- | --- |
-| A | @ | 185.199.108.153 |
-| A | @ | 185.199.109.153 |
-| A | @ | 185.199.110.153 |
-| A | @ | 185.199.111.153 |
-| CNAME | www | papura-octavian.github.io. |
-
-Apoi:
-
-```
-git mv CNAME.gata-de-pus CNAME && git commit -m "domeniul propriu" && git push
-```
-
-Dupa ce DNS-ul se propaga (minute-ore), bifezi **Enforce HTTPS** in Settings → Pages.
+HTTPS se emite automat de GitHub (Let's Encrypt) dupa ce DNS-ul e corect. Cand certificatul e
+gata, se bifeaza **Enforce HTTPS** in Settings → Pages, ca adresa pe http sa fie redirectionata.
