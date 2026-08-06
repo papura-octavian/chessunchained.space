@@ -32,6 +32,9 @@ var TEXTS = {
                    "a knight that survives three moves catches fire, a rook that holds still puts up a wall. " +
                    "The demo has all of it except online play. It is not finished, and I am building it on my own.",
 
+        clipsTitle: "See it move",
+        clipsIntro: "Five of the upgrades, straight from the game. No editing, no mockups.",
+
         piecesTitle: "The pieces",
         piecesIntro: "Six slots, one card each. Here is everything you can pick and what it takes to unlock.",
         catalogError: "Could not load the piece list.",
@@ -63,6 +66,9 @@ var TEXTS = {
                    "lucruri pe tabla — un cal care rezista trei mutari ia foc, un turn care sta pe loc ridica " +
                    "un zid. Demo-ul le are pe toate, mai putin partea online. Nu e gata, si il fac singur.",
 
+        clipsTitle: "Cum arata in miscare",
+        clipsIntro: "Cinci dintre upgrade-uri, direct din joc. Fara montaj si fara machete.",
+
         piecesTitle: "Piesele",
         piecesIntro: "Sase sloturi, cate o carte in fiecare. Astea sunt toate, si ce trebuie facut ca sa se deblocheze.",
         catalogError: "Nu am putut incarca lista de piese.",
@@ -76,6 +82,41 @@ var TEXTS = {
         footerMade: "Facut de un singur om"
     }
 };
+
+/*
+    Clipurile de pe pagina, in ordinea in care se vad.
+
+    Sunt cinci, si de asta se incarca lenes (loading="lazy"): impreuna fac peste patru
+    megaocteti, iar cine intra de pe telefon nu trebuie sa ii descarce pe toti ca sa vada
+    butonul de download. Browserul le aduce doar cand ajung pe ecran.
+*/
+var CLIPS = [
+    {
+        file: "gifs/fire.gif",
+        en: "A knight that moves three turns in a row catches fire. Its next jump burns everything in its path - three pieces at once, here.",
+        ro: "Un cal care se muta trei ture la rand ia foc. Urmatoarea saritura arde tot ce prinde in cale - aici, trei piese dintr-o data."
+    },
+    {
+        file: "gifs/archbishop.gif",
+        en: "A bishop that captures a queen becomes an Archbishop: from then on it also moves like a knight. Here it jumps in an L and gives check.",
+        ro: "Un nebun care mananca dama devine Archbishop: de atunci se muta si ca un cal. Aici sare in L si da sah."
+    },
+    {
+        file: "gifs/shadowking.gif",
+        en: "The Shadow King swaps places with any friendly piece, however far away. Here it trades corners with a rook.",
+        ro: "Regele Umbra schimba locul cu orice piesa de-a lui, oricat de departe. Aici face schimb de colturi cu un turn."
+    },
+    {
+        file: "gifs/wall.gif",
+        en: "A rook that stays still for three turns raises a wall. It blocks any line - even a check. While it is up, the rook cannot move.",
+        ro: "Un turn care sta nemiscat trei ture ridica un zid. Blocheaza orice linie - chiar si un sah. Cat e activ, turnul nu se poate misca."
+    },
+    {
+        file: "gifs/mighty.gif",
+        en: "The pawn in front of the king, once it captures, becomes a MightyPawn and can eat sideways: it takes a piece it never steps on.",
+        ro: "Pionul din fata regelui, dupa ce captureaza o data, devine MightyPawn si poate manca lateral: ia o piesa fara sa calce pe patratul ei."
+    }
+];
 
 var catalog = null;      // variants.json, odata incarcat
 var downloads = 0;       // cate descarcari are ultimul release, 0 = nestiut
@@ -101,9 +142,41 @@ function pickLanguage(next) {
 
     // Catalogul se redeseneaza, nu se reincarca: datele sunt deja bilingve in memorie.
     if (catalog) drawCatalog();
+    drawClips();
     drawDownloads();
 
     try { localStorage.setItem("lang", lang); } catch (e) { /* navigare privata */ }
+}
+
+// ---------------------------------------------------------------- clipuri
+
+/*
+    Deseneaza clipurile. Imaginile se recreeaza la fiecare schimbare de limba, dar browserul
+    le are deja in cache, deci nu se descarca a doua oara - se schimba doar textul de sub ele.
+*/
+function drawClips() {
+    var host = document.getElementById("clips");
+    if (!host) return;
+    host.innerHTML = "";
+
+    for (var i = 0; i < CLIPS.length; i++) {
+        var clip = CLIPS[i];
+
+        var figure = document.createElement("figure");
+        figure.className = "clip";
+
+        var image = document.createElement("img");
+        image.src = clip.file;
+        image.alt = "";
+        image.loading = "lazy";
+        figure.appendChild(image);
+
+        var caption = document.createElement("figcaption");
+        caption.textContent = clip[lang] || clip.en;
+        figure.appendChild(caption);
+
+        host.appendChild(figure);
+    }
 }
 
 // ---------------------------------------------------------------- catalogul
