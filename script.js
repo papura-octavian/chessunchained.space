@@ -78,6 +78,7 @@ var TEXTS = {
 };
 
 var catalog = null;      // variants.json, odata incarcat
+var downloads = 0;       // cate descarcari are ultimul release, 0 = nestiut
 var lang = "en";
 
 // ---------------------------------------------------------------- limba
@@ -100,6 +101,7 @@ function pickLanguage(next) {
 
     // Catalogul se redeseneaza, nu se reincarca: datele sunt deja bilingve in memorie.
     if (catalog) drawCatalog();
+    drawDownloads();
 
     try { localStorage.setItem("lang", lang); } catch (e) { /* navigare privata */ }
 }
@@ -213,13 +215,25 @@ function loadDownloads() {
             for (var i = 0; i < (release.assets || []).length; i++) {
                 total += release.assets[i].download_count || 0;
             }
-            if (total <= 0) return;
-
-            var node = document.getElementById("counter");
-            node.textContent = TEXTS[lang].downloads.replace("{n}", total);
-            node.hidden = false;
+            downloads = total;
+            drawDownloads();
         })
         .catch(function () { /* tacut, dinadins */ });
+}
+
+/*
+    Scrisa separat de incarcare ca sa poata fi chemata si la schimbarea limbii: altfel
+    numarul ramanea in limba in care a fost adus, singurul text de pe pagina care nu se
+    traduce.
+
+    Zero descarcari nu se arata: "0 downloads" e mai rau decat nimic.
+*/
+function drawDownloads() {
+    var node = document.getElementById("counter");
+    if (downloads <= 0) { node.hidden = true; return; }
+
+    node.textContent = TEXTS[lang].downloads.replace("{n}", downloads);
+    node.hidden = false;
 }
 
 // ---------------------------------------------------------------- pornire
