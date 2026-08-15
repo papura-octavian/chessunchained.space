@@ -1,10 +1,15 @@
 # chessunchained.space
 
-Site-ul si demo-ul public pentru **Chess: Unchained** — sah in care piesele isi castiga
+Site-ul si build-ul public pentru **Chess: Unchained** — sah in care piesele isi castiga
 puterile in timpul partidei.
 
 - Pagina: <https://chessunchained.space>
-- Demo (Windows): [ultima versiune](https://github.com/papura-octavian/chessunchained.space/releases/latest/download/ChessUnchained-demo-win64.zip)
+- Jocul (Windows): [ultima versiune](https://github.com/papura-octavian/chessunchained.space/releases/latest/download/ChessUnchained-demo-win64.zip)
+
+Din v0.2 se publica **jocul complet**, nu presetul cu eticheta `demo`: are si BATTLE, si
+clasamentul, si insigna de rang. Numele arhivei a ramas `...-demo-win64.zip` pentru ca butonul
+de pe pagina arata catre el, iar un nume nou ar strica descarcarea pentru oricine are pagina
+deschisa.
 
 ## Ce e aici
 
@@ -35,7 +40,7 @@ serveste mereu ultima versiune. De asta arhiva pastreaza mereu acelasi nume.
 ## Arhiva nu se comite niciodata
 
 GitHub blocheaza fisierele peste 100 MB, iar ce comiti ramane in istoric pentru totdeauna:
-trei versiuni de demo ar insemna sute de megaocteti pe care oricine cloneaza ii descarca
+trei versiuni ale jocului ar insemna sute de megaocteti pe care oricine cloneaza ii descarca
 degeaba. Release-urile stau in afara istoricului si accepta 2 GB per fisier.
 
 

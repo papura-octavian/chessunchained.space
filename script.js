@@ -17,8 +17,8 @@ var TEXTS = {
     en: {
         tagline: "Chess, but your pieces earn powers while you play.",
         trailerSoon: "Trailer coming soon.",
-        download: "Download the free demo",
-        downloadNote: "Windows · 79 MB · vs the bot or 1v1 on the same computer",
+        download: "Download it free",
+        downloadNote: "Windows · 114 MB · vs the bot, 1v1 on one computer, or online",
         downloads: "{n} downloads so far",
 
         warnTitle: "Windows will warn you. Here is why.",
@@ -30,7 +30,11 @@ var TEXTS = {
         aboutBody: "Normal chess underneath: same board, same rules, same pieces. But before a match you pick " +
                    "6 upgrade cards, and during the match your pieces unlock them by actually doing things — " +
                    "a knight that survives three moves catches fire, a rook that holds still puts up a wall. " +
-                   "The demo has all of it except online play. It is not finished, and I am building it on my own.",
+                   "Everything is in there, online play included. It is not finished, and I am building it on my own.",
+
+        newTitle: "New in v0.2",
+        newIntro: "The big one is online play. It is a direct connection between the two players — there is no " +
+                  "server, so you and your opponent trade an address and that is the whole setup.",
 
         clipsTitle: "See it move",
         clipsIntro: "Five of the upgrades, straight from the game. No editing, no mockups.",
@@ -51,8 +55,8 @@ var TEXTS = {
     ro: {
         tagline: "Sah, dar piesele isi castiga puteri in timpul partidei.",
         trailerSoon: "Trailerul vine in curand.",
-        download: "Descarca demo-ul gratuit",
-        downloadNote: "Windows · 79 MB · contra botului sau 1v1 pe acelasi calculator",
+        download: "Descarca gratuit",
+        downloadNote: "Windows · 114 MB · contra botului, 1v1 pe acelasi calculator sau online",
         downloads: "{n} descarcari pana acum",
 
         warnTitle: "Windows o sa te avertizeze. Uite de ce.",
@@ -64,7 +68,11 @@ var TEXTS = {
         aboutBody: "Pe dedesubt e sah normal: aceeasi tabla, aceleasi reguli, aceleasi piese. Dar inainte de " +
                    "meci iti alegi 6 carti de upgrade, iar in timpul partidei piesele si le deblocheaza facand " +
                    "lucruri pe tabla — un cal care rezista trei mutari ia foc, un turn care sta pe loc ridica " +
-                   "un zid. Demo-ul le are pe toate, mai putin partea online. Nu e gata, si il fac singur.",
+                   "un zid. Sunt toate acolo, inclusiv partea online. Nu e gata, si il fac singur.",
+
+        newTitle: "Nou in v0.2",
+        newIntro: "Cel mai mare e partea online. E o legatura directa intre cei doi jucatori — nu exista niciun " +
+                  "server, deci tu si adversarul va dati o adresa si asta e toata pregatirea.",
 
         clipsTitle: "Cum arata in miscare",
         clipsIntro: "Cinci dintre upgrade-uri, direct din joc. Fara montaj si fara machete.",
@@ -90,6 +98,52 @@ var TEXTS = {
     megaocteti, iar cine intra de pe telefon nu trebuie sa ii descarce pe toti ca sa vada
     butonul de download. Browserul le aduce doar cand ajung pe ecran.
 */
+/*
+    Ce e nou in versiunea de acum.
+
+    Sta aici, langa TEXTS, nu in index.html: lista trebuie sa se schimbe odata cu limba, la fel
+    ca tot restul paginii. Prima intrare e cea mai mare, si de asta e prima - cine citeste doar
+    un rand trebuie sa ii nimereasca pe cel care conteaza.
+*/
+var NEWS = [
+    {
+        en: "Online play. Ranked BATTLE moves your rating; FRIENDLY does not. Direct between the two players, no server in the middle.",
+        ro: "Partide online. BATTLE e clasat si iti misca ratingul, FRIENDLY nu. Direct intre cei doi jucatori, fara server la mijloc."
+    },
+    {
+        en: "Rating and ranks. A rank badge on the home screen, and a local top 100 of everyone you have played.",
+        ro: "Rating si ranguri. O insigna de rang pe ecranul de start, si un top 100 local cu toti cei cu care ai jucat."
+    },
+    {
+        en: "Premoves, chained. Queue as many moves as you like while the opponent thinks. If the first turns out illegal, the whole chain is dropped — the rest assumed it was played.",
+        ro: "Premutari in lant. Pui la coada cate mutari vrei cat timp adversarul se gandeste. Daca prima se dovedeste ilegala, cade tot lantul — restul o presupuneau jucata."
+    },
+    {
+        en: "Drag and drop. Pick a piece up and drop it, the way every chess site works. Clicking still works exactly as before.",
+        ro: "Drag and drop. Ridici piesa si o lasi unde vrei, ca pe orice site de sah. Clicul simplu merge exact ca inainte."
+    },
+    {
+        en: "Right-click to mark a square red. Marks clear on every move, because they are notes about the position in front of you.",
+        ro: "Click dreapta insemneaza un patrat cu rosu. Semnele dispar la fiecare mutare, pentru ca sunt note despre pozitia de acum."
+    },
+    {
+        en: "Pick your colour against the bot — white, black, or drawn by lot. Online it is always drawn: hosting does not buy you white.",
+        ro: "Iti alegi culoarea contra botului — alb, negru sau la sorti. Online se trage mereu la sorti: cine gazduieste nu primeste albul pe gratis."
+    },
+    {
+        en: "Sound. Separate volume for the board and for the music, each with a speaker icon that mutes it in one click, plus a four-track playlist.",
+        ro: "Sunet. Volum separat pentru tabla si pentru muzica, fiecare cu o iconita care il opreste dintr-un clic, plus un playlist de patru piese."
+    },
+    {
+        en: "Streamer mode. Keeps network addresses off the screen so they do not end up in a stream. It does not hide your address from your opponent — on a direct connection they see it anyway.",
+        ro: "Mod streamer. Nu mai scrie adresele de retea pe ecran, ca sa nu ajunga intr-un stream. NU o ascunde de adversar — intr-o legatura directa el o vede oricum."
+    },
+    {
+        en: "Fixes: a Fanatics pawn could not promote through an en passant capture, a mercenary could get stuck on the last rank with no legal move, and move sounds went silent after a take-back.",
+        ro: "Reparate: pionul Fanatic nu putea promova printr-o captura en passant, mercenarul ramanea blocat pe ultima linie fara nicio mutare legala, iar sunetele se opreau dupa o mutare luata inapoi."
+    }
+];
+
 var CLIPS = [
     {
         file: "gifs/fire.gif",
@@ -142,10 +196,25 @@ function pickLanguage(next) {
 
     // Catalogul se redeseneaza, nu se reincarca: datele sunt deja bilingve in memorie.
     if (catalog) drawCatalog();
+    drawNews();
     drawClips();
     drawDownloads();
 
     try { localStorage.setItem("lang", lang); } catch (e) { /* navigare privata */ }
+}
+
+// ---------------------------------------------------------------- ce e nou
+
+function drawNews() {
+    var host = document.getElementById("whatsnew");
+    if (!host) return;
+    host.innerHTML = "";
+
+    for (var i = 0; i < NEWS.length; i++) {
+        var item = document.createElement("li");
+        item.textContent = NEWS[i][lang] || NEWS[i].en;
+        host.appendChild(item);
+    }
 }
 
 // ---------------------------------------------------------------- clipuri
